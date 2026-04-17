@@ -1,9 +1,9 @@
 # logiNapCat-ahk1
 环境：
-Win10
-Chrome
-MuMu模拟器
-AHK
+- Win10
+- Chrome
+- MuMu模拟器
+- AHK
 流程：
 - 1.打开无痕标签登录portainer，进入日志监测
 - 2.每10s监测一次，获得掉线结果进入容器重启url点击重启，延迟30s，回到日志url
