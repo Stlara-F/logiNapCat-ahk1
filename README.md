@@ -18,3 +18,7 @@ Auto login for Napcat docker
    urlRestart := "http://<container-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
    ```
 3. Run main.ahk; press F8 to start, F12 to stop.
+# Thanks
+- FeiYue  / Descolada  / c4p  / ed1chandler
+- Findtext
+- https://github.com/thqby/ahk2_lib/tree/master/wincapture
