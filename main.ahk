@@ -316,8 +316,6 @@ RestartContainer()
     Sleep 800
     Send {Enter}
     Sleep 8000
-    Sleep 2000
-    Send {Space}
 
     ok := FindTextWait(TextRestartBtn, 15000)
     if (ok)
