@@ -4,6 +4,59 @@ SetBatchLines, -1
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 
+WinCapture_mode := "DXGI"
+
+GetBitsFromScreen2(bits, x, y, w, h) {
+    global WinCapture_mode
+    if (WinCapture_mode = "DXGI")
+        return DXGI_Capture(bits, x, y, w, h)
+    return 0
+}
+
+WinCapture_Load(DLLroot="") {
+    if (DLLroot = "")
+        DLLroot := A_ScriptDir "\" (A_PtrSize*8) "bit\wincapture.dll"
+    if !(hModule := DllCall("LoadLibrary", "Str", DLLroot, "Ptr"))
+        return 0
+    return hModule
+}
+
+DXGI_Capture(bits, x, y, w, h) {
+    static init, oldx, oldy, oldw, oldh
+    if (!init) {
+        if !WinCapture_Load()
+            return 0
+        hr := DllCall("wincapture\dxgi_start", "UInt")
+        if (hr != 0) {
+            return 0
+        }
+        oldx := 0, oldy := 0, oldw := 0, oldh := 0
+        init := 1
+    }
+
+    VarSetCapacity(box, 16, 0)
+    NumPut(x, box, 0, "Int")
+    NumPut(y, box, 4, "Int")
+    NumPut(x+w, box, 8, "Int")
+    NumPut(y+h, box, 12, "Int")
+
+    hr := DllCall("wincapture\dxgi_captureAndSave", "Ptr*", pdata:=0, "Ptr", &box, "UInt", 0, "UInt")
+    if (hr = 0x887A0027 && x >= oldx && y >= oldy && x+w <= oldx+oldw && y+h <= oldy+oldh)
+        return 1
+    oldx := x, oldy := y, oldw := w, oldh := h
+    
+    if (hr != 0 || pdata = 0)
+        return 0
+
+    pBits   := NumGet(pdata+0, "Ptr")
+    Pitch   := NumGet(pdata+A_PtrSize, "UInt")
+    Width   := NumGet(pdata+A_PtrSize+4, "UInt")
+    Height  := NumGet(pdata+A_PtrSize+8, "UInt")
+    
+    FindText().CopyBits(bits.Scan0, bits.Stride, x, y, pBits, Pitch, 0, 0, Min(w,Width), Min(h,Height))
+    return 1
+}
+
 ; ===================== Config =====================
 ChromePath := "" ;Chrome path
 MuMuPath := "C:\Program Files\Netease\MuMuPlayerGlobal-12.0\shell\MuMuPlayer.exe"   ;MuMu path
