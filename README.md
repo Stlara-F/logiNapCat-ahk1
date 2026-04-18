@@ -1,13 +1,20 @@
-# logiNapCat-ahk1
-## 环境：
-- Win10
-- Chrome
-- MuMu模拟器
-- AHK
-## 流程：
-- 1.打开无痕标签登录portainer，进入日志监测
-- 2.每10s监测一次，获得掉线结果进入容器重启url点击重启，延迟30s，回到日志url
-- 3.打开mumu模拟器中的Tim点击“+”，点击扫一扫，点击选择虚拟摄像头
-- 4.拖动生成的虚拟摄像头窗口移动至容器重启后的日志二维码处
-- 5.扫描后等待10s，勾选并点击登录
-- 6.关闭mumu模拟器和chrome，重新执行打开无痕窗口进行日志监测
+# LogiNapCat-ahk1
+Auto login for Napcat docker
+## ENV：
+- Windows10
+- Chrome (Dark theme)
+- MuMuPlayer 3.1.7.0 Display Mobilemode 540x260(DPI240)
+- TIM 3.5.8
+- AHK v1
+### Guide：
+1. Download the ZIP file and extract it to the root directory of the AHK program.
+2. Modify the global variable configuration in `main.ahk` as follows:
+   ```
+   MuMuPath := "C:\Program Files\Netease\MuMuPlayerGlobal-12.0\shell\MuMuPlayer.exe"   ;MuMu path
+   Account := "username"   ;container username
+   Password := "password"  ;container password
+   urlLogin := "http://<container-ip>:port/" ;url for login
+   urlLog := "http://<container-ip>:port/#!/3/docker/containers/<container-id>/logs"   ;url for log
+   urlRestart := "http://<container-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
+   ```
+3. Run main.ahk; press F8 to start, F12 to stop.
