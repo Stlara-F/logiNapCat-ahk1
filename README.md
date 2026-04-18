@@ -7,7 +7,7 @@ Auto login for Napcat docker
 - TIM 3.5.8
 - AHK v1
 ### Guide：
-1. Download the ZIP file and extract it to the root directory of the AHK program.
+1. Download the ZIP file and extract it to the root directory of the AHK v1 program.
 2. Modify the global variable configuration in `main.ahk` as follows:
    ```
    MuMuPath := "C:\Program Files\Netease\MuMuPlayerGlobal-12.0\shell\MuMuPlayer.exe"   ;MuMu path
