@@ -6,6 +6,7 @@ Auto login for Napcat docker
 - MuMuPlayer 3.1.7.0 Display Mobilemode 540x260(DPI240)
 - TIM 3.5.8
 - AHK v1
+- Portainer
 ### Guide：
 1. Download the ZIP file and extract it to the root directory of the AHK v1 program.
 2. Modify the global variable configuration in `main.ahk` as follows:
