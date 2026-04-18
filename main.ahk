@@ -350,7 +350,6 @@ MoveWindowToQRAnchor()
     return true
 }
 
-; ===================== TIM flow =====================
 OperateMuMuAndTim()
 {
     global MuMuPath, TextTimIcon, TextTimPlus, TextTimScan, TextTimCam, TextTimLogin, ScanWait
@@ -471,8 +470,12 @@ OperateMuMuAndTim()
         return
     }
 
-    Log("Window moved, start monitoring login button immediately...")
-    ok := FindTextWait(TextTimLogin, CheckTimeout) 
+    WinActivate ahk_exe MuMuPlayer.exe
+    WinWaitActive ahk_exe MuMuPlayer.exe, , 5
+    Sleep 1000
+
+    Log("Waiting for QR scan complete, searching login button...")
+    ok := FindTextWait(TextTimLogin, 60000) 
 
     if (!ok)
     {
@@ -481,10 +484,15 @@ OperateMuMuAndTim()
         return
     }
 
-    x := ok[1].x
-    y := ok[1].y
-    Log("Login button found at " . x . "," . y)
-    Click %x%, %y%
+    Loop, 3
+    {
+        x := ok[1].x
+        y := ok[1].y
+        Log("Clicking login button (Attempt " A_Index ") | Pos: " x "," y)
+        Click %x%, %y%
+        Sleep 2000
+    }
+
     Sleep 20000
 
     WinSet AlwaysOnTop, Off, ahk_exe MuMuPlayer.exe
@@ -494,8 +502,10 @@ OperateMuMuAndTim()
     return
 
 CleanupMuMu:
-    Log("Closing MuMu emulator.")
-    WinKill ahk_exe MuMuPlayer.exe
+    Log("Force closing MuMu emulator process...")
+    Process, Close, MuMuPlayer.exe
+    Process, WaitClose, MuMuPlayer.exe, 5
     Sleep 3000
-    return
+    Log("MuMu closed successfully.")
+return
 }
