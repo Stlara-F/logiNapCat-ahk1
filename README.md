@@ -1,5 +1,9 @@
 # LogiNapCat-ahk1
 Auto login for Napcat docker
+### ABC
+- Monitor Offline Logs.
+- Restart the container to retrieve the QR code.
+- Using the Android Emulator's Screen Camera to Scan the code.
 ## ENV：
 - Windows10
 - Chrome (Dark theme)
