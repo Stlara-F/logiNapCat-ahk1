@@ -68,40 +68,42 @@ urlRestart := "http://<container-ip>:port/#!/3/docker/containers/<container-id>"
 
 CHECK_DISCONNECT_INTERVAL := 10000
 CHECK_QR_INTERVAL := 30000
+SCAN_TASK_COOLDOWN := 60000 
 RestartWait := 30000
 ScanWait := 30000
 CheckTimeout := 30000
 
-; ===================== Feature codes =====================
-TextUser := "|<>**50$36.1lkzzUvHEU0jCyyjScg62jSfRpuU0exHejSfBqujSco7OU0fxpejSeRIudGuho/dGqo7vNSoxq7FEg7TxlzsU"
-TextLogin := "|<>**50$40.0000000000000008k0003yq1zy00NX0080X6M00U1sD1zy03zE0080M0k00U300rzzkPzs040080UMEM0U20lX020807s0DzU0q00E00RA00UkC4A0361UEA7zzkD000000008"
-TextDisconnect := "|<>**50$49.000s1kCTTzrITjp+s0+u80CZjvzhziyy70503MqoTiuyxff7jk13Ok1vkfiVLTjvXo0Fhc08RGvtiprruRh1huqvbPtzgxEBDJX0gFjoyQk"
-TextRestartBtn := "|<>**50$44.00000000003zsS07z0U3wy3XETjk0VjI405zcqN1ivTuD7k80k0Wlw2vhzsyB0U3E2DXkDjpyWNg20BTcfq1yyk2/70E0ByXzU7zzku"
-TextTimIcon :="|<>**30$55.00000000001zzzzzy007zzzzzzk07000000S0C0000003UA0000000M600000006600000003200000000n01zzzzs0N03zzzzy0AU3k0007k2E3U0000s1c3U0000C0o1U000030O0k00001kB0E01w00s6U801y00Q3E400n0061c200NU030o100Ak01UO0U06M00kB0E63A3UM6U87laDkA3E43znzw61c23btyC30o11s0071UO0UT00TUkB0E3y1y0M6U80D0s0A3E403UM061c201UA030o101nr01UO0U1ntk0kB0E0niQ0M6U80vXi0A3E40tUvU61c20DkTU30o103k7U3UO0k0k1U1kB0M00000k6UC00000s3E300000w1c1k0000w0o0T0000w0O03zw0Dw0NU0Tz07k0AE001s3006A000S1U0660003Uk071U000wM030M000DA03070001y0700w000T0S003zzzzzs000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001z3Vk00001zzvw00000UPjq00000Sxrn00000DSttU00001jRxk00000rigM00000PrKg00000Bvjq000006xqP000003SvBU00001zzzk00000zzzs000000000008"
-TextTimPlus := "|<>**75$30.000000000000A0000A0000C0000C0000C0000C0000C0000C0000C0000C0000C007zzzwDzzzwDzzzw00S0000C0000C0000C0000C0000C0000C0000C0000C0000C0000C0000A000000000000U"
-TextTimScan := "|<>*162$137.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001zzzzs000000000000000003zzzzk0000A00000001U0007zzzzU0000M000000030000Dzzzz00000kzz0000067zs0Tzzzy00001Xzy00000ADzs0zzzzw0000300A00000M00k1zzzzs0001zk0M0000Dz01U3zzzzk0003zU0k0000Dw0307zzzzU0000M01U000030060Dzzzz00000k0300000600A0Tzzzy00001U0600000A00M0zzzzw0000300A00000M01k000000000067zszzzz0kTzU0000000000Djzkzzzy1yzz00000000003z01U0000Ts060zzzzzk000Dk0300001y00A1zzzzzU0001U0600000A00M0000000000300A00000M00k0000000000600M00000k01U0000000000A00k00001U03060001U0000M01U0000300C0A000300000lzz0000067zw0M000600003Xzy00000ADzs0k000A0000T00A00003s00k1U000M0000w00M00003U0103U000k000000000000000007zzzzU00000000000000000Dzzzz00000000000000000000000000000000000000000000000000000000000000000000000000000000000001"
-TextTimCam :="|<>*155$22.zzzy1zUM7y1bzzaTzyNzztbzzbzzzzzzzzzzy000M001zzzzzzzzzzzbzzaTzyNzztbzza1zUM7y1zzzy"
-TextTimLogin :="|<>*162$103.zzzzzzzzzzzzzzzzzzwTzzznzzzyyzzzzzzyDzzDtzzU2CTzzzzzyDzzXwzzk1UDw001zz7zzswTzzssSz000zz7nzyC01wQQCTzzwTz7szzb00T4T4DzzyTzbyTzz00TkTkDs00DzXz7zzbbzs00Dy007zXzVy3Xnzw007zzznzU00T0ntzwTzUzzztzU00DUTwzsTzsC0007k03XzDyTs00370001zlltza00Cs00zk001zsszzn003wTwTwz7nzwQTztU03yTyDy7XlzyCDzwztzzDz7zVkkzzD7zyTwzzU03zss1zzbXxzDyTzk01zzM1zzXlyTazDzwDVzzUEzznszDkTbzzDlzz0ADzlwTbsDnzzXszy1b3zVzDXsTtzztwzw7nkD1zU1wTwzs000CDty71zk1zTyTw0007z0znnzzzzzzDzzzzzzUTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
-TextQR := "|<>*139$53.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzU000000Dz0000000Ty0000000zw0000001zs0000003zk0000007zU000000Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzk7zzzzzzzUDzzzzzzz0Tzzzzzzy0zzzzzzzw1zzzzzzzs3zzzzzzzk7w00007zUDs0000Dz0Tk0000Ty0zU0000zw1z00001zs3y00003zk7w00007zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzs3y0zzzvzk7w1zzzrzUDs3zzzjz0Tk7zzzTy0zUDzzyzw1z0Tzzxzs3y0zzzvzk7w1zzzrzUDs3zzzjz0Tk7zzzTy0zUDzzyzw1z0Tzzxzs3y0zzzvzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw1z0Tzzxzs3y0zzzvzk7w1zzzrzUDs3zzzjz0Tk7zzzTy0zUDzzyzw1z00001"
+TextUser := "|<>*85$28.zzzzzzzzzwwz01rrxvq21rjPfr01iDRvqvRrjMAr01itRvqvxbjPjqyxUzPvqv3DcTzzzzzzzzy"
+TextLogin := "|<>*153$38.00000000000000AE000DtQ3zw06QE010X2800E6UQ3zw0zy0010M0M00EA01jzzazz00U0A0kM8830A3360k308q0Dzk0f00UQ1mM0AA1UVU120UM6DzzUw00000000000000U"
+TextDisconnect := "|<>*139$35.zzzzzzyzvzSjRs0CxjPyvvsM0KBh7zSff7jyx07j3uvvyszqk08RTRbTTtxzBitqryEBDJTWzHtnzzzzzy"
+TextRestartBtn := "|<>*114$16.zzzzzzzzz3TvpzT7vwzjzzzrwzTXvyjTv3zzzzzzzzy"
+TextTimIcon :="|<>*178$41.zzzzzzzzU000Dzw00007zk00007zU00007y00000Dw00000Dk00000TU03s00z007k01y00DU03w00T007s00y00Dk41w10TUC3sD0z0zjny1y1zzzw3w3zzzs7s3zzzUDk1zzw0TU0Tz00z00Tw01y01zw03w03zw07s0Drs0Dk0z7s0TU3y7s0z07sDk1y07UDU3w070A07s00000Ds00000zk00001zk00007zk0000Tzk0001zzzy01zz"
+TextTimPlus := "|<>*133$29.00M0000k0001U0003000060000A0000M0000k0001U00030000D007zzzwDzzzs01s0001U0003000060000A0000M0000k0001U00030000600E"
+TextTimScan := "|<>*155$81.000000000000000000000000000000000000000001U0000000A0000A00000001U0001Vzy00000ADzk0ADzk00001Vzz01U0600000A00M3zU0k0000Ty030Tw0600001zU0M0A00k00001U0301U0600000A00M0A00k00001U0301U0600000A00M0ADzkzzzy1Uzz01xzy7zzzkDrzs1zU0k00007w030TU0600003w00M0A00k00001U0301U0600000A00M0A00k00001U0301U0600000A00M0A00k00001U0301Xzy00000ADzs0ADzk00001Vzz0DU0600001w00M1k00k0000700200000000000000000000000000000000000000000U"
+TextTimCam :="|<>**50$23.0Q0S0c0g1ETM2Ujrx3Tsu4/yrxrlgPivTrRqUish1Zzy3z0001"
+TextTimLogin :="|<>*159$51.zzzzzzzzzzzzzzzzzzyTzzzrryTnzz04QzlwTzs0E7z7Xzzz71rwQ03sssQznU0DWDW7zs03y3y1zz7Dzk00T1ltzy003s6TDzVUA70ztzkzzkTbzDw001Xwk01q007za007kzszwk01yDz7zbzDzlzszwztzy007zbzDzs00zwrtzzVwDzUzDzyTXzw7tzzlwTz3zDzyD7zsztzk000TjzDy0003zztzzzzzzzzzzzzzzU"
+TextQR := "|<>*133$51.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0000000zs0000007z0000000zs0000007z0000000zs0000007z0000000zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzs1zzzzzzz0Dzzzzzzs1zzzzzzz0Dzzzzzzs1zzzzzzz0Dzzzzzzs1w00007z0DU0000zs1w00007z0DU0000zs1w00007z0DU0000zs1w00007zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0DU7zzwzs1w0zzzbz0DU7zzwzs1w0zzzbz0DU7zzwzs1w0zzzbz0DU7zzwzs1w0zzzbz0DU7zzwzs1w0zzzbz0DU7zzwzs1w0zzzbz0DU7zzwzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzs1w0zzzbz0DU7zzwzs1w0zzzbz0DU7zzwzs1w0zzzbz0DU7zzwzs1w00007z0DU0000U"
 
-; ===================== Global state =====================
+STATE := "IDLE"
+BUSY := false
+lastHeartbeat := A_TickCount
+disconnectDetected := false
+logBuffer := []
+LOG_MAX_LINES := 300
+lastScanTask := 0
+
 lastCheckDisconnect := A_TickCount
 lastCheckQR := A_TickCount
 LogFile := A_ScriptDir . "\automation.log"
 
-; ===================== GUI =====================
 Gui +Resize +MinSize600x300 +AlwaysOnTop
 Gui Font, s9, Consolas
 Gui Add, Text, x10 y10 w580 h20 vStateText, State: Idle
 Gui Add, Edit, x10 y35 w760 h420 vLogEdit ReadOnly -Wrap HScroll
-Gui Show, w780 h470, Automation Log
+Gui Show, w780 h470 Minimize, Automation Log
 Log("Script started.")
 
-; ===================== Hotkeys =====================
-F8::
-    Log("Manual run requested.")
-    Gosub MainStart
-return
+Gosub MainStart 
 
 F12::
     Log("Exit requested.")
@@ -111,86 +113,193 @@ return
 GuiClose:
     ExitApp
 
-; ===================== Helpers =====================
 Log(msg)
 {
-    global LogFile
-    FormatTime ts,, yyyy-MM-dd HH:mm:ss
-    line := ts . " | " . msg . "`r`n"
-    FileAppend %line%, %LogFile%
+    global LogFile, logBuffer, LOG_MAX_LINES
 
-    GuiControlGet old,, LogEdit
-    newText := old . line
-    GuiControl,, LogEdit, %newText%
+    FormatTime ts,, yyyy-MM-dd HH:mm:ss
+    line := ts . " | " . msg
+
+    logBuffer.Push(line)
+    if (logBuffer.Length() > LOG_MAX_LINES)
+        logBuffer.RemoveAt(1)
+
+    FileAppend % line . "`r`n", %LogFile%
+
+    GuiControl,, LogEdit, % JoinLines(logBuffer)
     GuiControl,, StateText, % "State: " . msg
 }
 
-FindTextWait(feat, timeout=15000)
+JoinLines(arr)
 {
-    start := A_TickCount
-    Loop
-    {
-        if (A_TickCount - start >= timeout)
-            return false
-        ok := FindText(0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, 0, 0, feat)
-        if (ok)
-            return ok
-        Sleep 500
-    }
+    out := ""
+    for k,v in arr
+        out .= v . "`r`n"
+    return out
 }
 
-; ===================== Main =====================
+FindStable(feat, count:=3, interval:=300)
+{
+    success := 0
+    lastX := ""
+    
+    Loop %count%
+    {
+        ok := FindText(0,0,A_ScreenWidth,A_ScreenHeight,0,0,0,0,feat)
+        if (!ok)
+            return false
+
+        x := ok[1].x
+        
+        if (lastX != "" && Abs(x - lastX) > 10)
+            return false
+
+        lastX := x
+        success++
+        Sleep %interval%
+    }
+    return ok
+}
+
 MainStart:
-    Log("Launching Chrome and login page.")
+    Log("System starting...")
+
     if (!OpenChromeLogin(urlLogin))
     {
-        Log("OpenChromeLogin failed.")
-        MsgBox 16, Error, Failed to start Chrome.
-        ExitApp
+        Log("Chrome init failed.")
+        Sleep 5000
+        Gosub MainStart
     }
 
-    Log("Entering monitoring loop.")
-    Loop
+    STATE := "MONITOR"
+
+    SetTimer MonitorLoop, 1000
+    SetTimer Watchdog, 10000
+return
+
+MonitorLoop:
+    if (BUSY)
+        return
+
+    now := A_TickCount
+
+    if (now - lastCheckDisconnect > CHECK_DISCONNECT_INTERVAL)
     {
-        currentTime := A_TickCount
+        lastCheckDisconnect := now
 
-        if (currentTime - lastCheckDisconnect >= CHECK_DISCONNECT_INTERVAL)
+        if (CheckLogDisconnect())
         {
-            lastCheckDisconnect := currentTime
-            Log("Checking disconnect status.")
-            if (CheckLogDisconnect())
-            {
-                Log("Disconnect detected.")
-                RestartContainer()
-                lastCheckDisconnect := A_TickCount
-                lastCheckQR := A_TickCount
-                Continue
-            }
+            BUSY := true
+            STATE := "RESTART"
+            Log("Disconnect detected.")
+            GoSub DoRestart
+            return
+        }
+    }
+
+    if (now - lastCheckQR > CHECK_QR_INTERVAL)
+    {
+        lastCheckQR := now
+
+        if (now - lastScanTask < SCAN_TASK_COOLDOWN)
+        {
+            Log("Scan cooldown active, skip QR check.")
+            return
         }
 
-        if (currentTime - lastCheckQR >= CHECK_QR_INTERVAL)
+        if (CheckQRCode())
         {
-            lastCheckQR := currentTime
-            Log("Checking QR status.")
-            if (CheckQRCode())
-            {
-                Log("QR detected.")
-                OperateMuMuAndTim()
-                lastCheckDisconnect := A_TickCount
-                lastCheckQR := A_TickCount
-                Continue
-            }
-            else
-            {
-                Log("QR not detected.")
-            }
+            BUSY := true
+            STATE := "SCAN"
+            Log("QR detected.")
+            GoSub DoScan
+            return
         }
-
-        Sleep 1000
     }
 return
 
-; ===================== Chrome login =====================
+CheckLogDisconnect()
+{
+    global TextDisconnect, disconnectDetected
+
+    ok := FindStable(TextDisconnect, 2)
+
+    if (ok && !disconnectDetected)
+    {
+        disconnectDetected := true
+        return true
+    }
+    else if (!ok && disconnectDetected)
+    {
+        disconnectDetected := false
+    }
+
+    return false
+}
+
+CheckQRCode()
+{
+    global TextQR
+    return FindStable(TextQR, 3)
+}
+
+DoRestart:
+    Log("Executing restart task...")
+    RestartContainer()
+    FinishTask()
+return
+
+DoScan:
+    lastScanTask := A_TickCount
+    start := A_TickCount
+    MAX := 1200000
+
+    Log("Executing scan task...")
+
+    Process, Exist, MuMuPlayer.exe
+    if (ErrorLevel)
+    {
+        Log("Killing existing MuMu...")
+        Process, Close, MuMuPlayer.exe
+        Sleep 3000
+    }
+
+    if (!OperateMuMuAndTim_SAFE(start, MAX))
+    {
+        Log("Scan flow failed.")
+    }
+
+    FinishTask()
+return
+
+FinishTask()
+{
+    global BUSY, STATE, lastHeartbeat
+
+    STATE := "MONITOR"
+    BUSY := false
+    lastHeartbeat := A_TickCount
+
+    Log("Task finished, back to monitor.")
+}
+
+Watchdog:
+    if (A_TickCount - lastHeartbeat > 900000)
+    {
+        Log("Watchdog: system stuck, reloading...")
+        Reload
+    }
+return
+
+OperateMuMuAndTim_SAFE(start, MAX)
+{
+    if (A_TickCount - start > MAX)
+        return false
+
+    OperateMuMuAndTim()
+    return true
+}
+
 OpenChromeLogin(Url)
 {
     global ChromePath, Account, Password, urlLog, TextUser, TextLogin
@@ -202,7 +311,7 @@ OpenChromeLogin(Url)
         else if FileExist("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
             ChromePath := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
         else
-            ChromePath := "chrome.exe"
+            ChromePath := chrome.exe
     }
 
     if (!FileExist(ChromePath))
@@ -223,7 +332,7 @@ OpenChromeLogin(Url)
     WinActivate ahk_pid %ChromePID%
     Sleep 8000
 
-    ok := FindTextWait(TextUser, 15000)
+    ok := FindStable(TextUser, 2)
     if (!ok)
     {
         Log("Username input not found.")
@@ -244,7 +353,7 @@ OpenChromeLogin(Url)
     Send %Password%
     Sleep 800
 
-    okLogin := FindTextWait(TextLogin, 15000)
+    okLogin := FindStable(TextLogin, 2)
     if (!okLogin)
     {
         Log("Login button not found.")
@@ -273,31 +382,6 @@ OpenChromeLogin(Url)
     return true
 }
 
-; ===================== Disconnect check =====================
-CheckLogDisconnect()
-{
-    global TextDisconnect
-    WinGet activePID, PID, A
-    WinActivate ahk_exe chrome.exe
-    Sleep 1000
-    ok := FindText(0,0,A_ScreenWidth,A_ScreenHeight,0,0,0,0,TextDisconnect)
-    WinActivate ahk_pid %activePID%
-    return ok
-}
-
-; ===================== QR check =====================
-CheckQRCode()
-{
-    global TextQR
-    WinGet activePID, PID, A
-    WinActivate ahk_exe chrome.exe
-    Sleep 1000
-    ok := FindText(0,0,A_ScreenWidth,A_ScreenHeight,0,0,0,0,TextQR)
-    WinActivate ahk_pid %activePID%
-    return ok
-}
-
-; ===================== Restart container =====================
 RestartContainer()
 {
     global urlRestart, urlLog, TextRestartBtn, RestartWait
@@ -317,7 +401,7 @@ RestartContainer()
     Send {Enter}
     Sleep 8000
 
-    ok := FindTextWait(TextRestartBtn, 15000)
+    ok := FindStable(TextRestartBtn, 2)
     if (ok)
     {
         x := ok[1].x
@@ -347,12 +431,11 @@ RestartContainer()
     Log("Returned to log page.")
 }
 
-; ===================== Move window to QR anchor =====================
 MoveWindowToQRAnchor()
 {
     global TextQR
 
-    WinWait Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 15
+    WinWait Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 30
     if ErrorLevel
     {
         Log("QR anchor window not found.")
@@ -360,10 +443,10 @@ MoveWindowToQRAnchor()
     }
 
     WinActivate Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe
-    WinWaitActive Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 8
-    Sleep 800
+    WinWaitActive Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 15
+    Sleep 1000
 
-    okQR := FindTextWait(TextQR, 15000)
+    okQR := FindStable(TextQR, 2)
     if (!okQR)
     {
         Log("QR anchor not found.")
@@ -396,7 +479,7 @@ MoveWindowToQRAnchor()
     Sleep 100
     
     Click up left
-    Sleep 800
+    Sleep 2000
 
     return true
 }
@@ -408,7 +491,7 @@ OperateMuMuAndTim()
     Log("Launching MuMu emulator.")
     Run %MuMuPath%
 
-    WinWait ahk_exe MuMuPlayer.exe, , 30
+    WinWait ahk_exe MuMuPlayer.exe, , 90
     if ErrorLevel
     {
         Log("MuMu window not found.")
@@ -417,10 +500,10 @@ OperateMuMuAndTim()
 
     WinActivate ahk_exe MuMuPlayer.exe
     WinSet AlwaysOnTop, On, ahk_exe MuMuPlayer.exe
-    WinWaitActive ahk_exe MuMuPlayer.exe, , 10
+    WinWaitActive ahk_exe MuMuPlayer.exe, , 60
     Log("MuMu window active.")
 
-    Sleep 30000
+    Sleep 40000
 
     steps := [ {feat: TextTimIcon, label: "TIM icon"}
               , {feat: TextTimPlus, label: "Plus button"}
@@ -437,7 +520,9 @@ OperateMuMuAndTim()
         Loop % currentStep - 1
         {
             checkStep := A_Index
-            if (FindText(0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, 0, 0, steps[checkStep].feat))
+            if (checkStep = 1 || checkStep = 2)
+                Continue
+            if (FindStable(steps[checkStep].feat, 1))
             {
                 rollbackStep := checkStep
                 break
@@ -456,7 +541,7 @@ OperateMuMuAndTim()
 
         Log("Processing step " . currentStep . "/" . steps.Length() . ": " . label . " (Attempt " . (retryCount+1) . "/" . maxRetries . ")")
 
-        ok := FindTextWait(feat, 15000)
+        ok := FindStable(feat, 2)
         if (!ok)
         {
             Log(label . " not found.")
@@ -464,10 +549,9 @@ OperateMuMuAndTim()
             if (retryCount >= maxRetries)
             {
                 Log("Max retries reached for " . label . ", exiting workflow.")
-                Gosub CleanupMuMu
                 return
             }
-            Sleep 1000
+            Sleep 2000
             Continue
         }
 
@@ -475,27 +559,35 @@ OperateMuMuAndTim()
         y := ok[1].y
         Log(label . " found at " . x . "," . y . ", clicking...")
         Click %x%, %y%
-        Sleep 2000
+        Sleep 5000
 
         if (label = "Scan button")
         {
-            Log("Waiting 10s for camera to load...")
-            Sleep 10000
+            Log("Waiting 3s for camera to load...")
+            Sleep 3000
+            stillExists := false
+        }
+        else if (label = "Plus button")
+        {
+            stillExists := !FindStable(TextTimScan, 1)
+        }
+        else if (label = "Camera button")
+        {
+            Log("Camera opened, starting QR window drag...")
             stillExists := false
         }
         else
         {
-            stillExists := FindText(0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, 0, 0, feat)
+            stillExists := FindStable(feat, 1)
         }
 
         if (stillExists)
         {
-            Log(label . " still present, retrying...")
+            Log(label . " not completed, retrying...")
             retryCount++
             if (retryCount >= maxRetries)
             {
                 Log("Max retries reached for " . label . ", exiting workflow.")
-                Gosub CleanupMuMu
                 return
             }
         }
@@ -517,7 +609,6 @@ OperateMuMuAndTim()
     if (!MoveWindowToQRAnchor())
     {
         Log("MoveWindowToQRAnchor failed.")
-        Gosub CleanupMuMu
         return
     }
 
@@ -526,12 +617,11 @@ OperateMuMuAndTim()
     Sleep 1000
 
     Log("Waiting for QR scan complete, searching login button...")
-    ok := FindTextWait(TextTimLogin, 60000) 
+    ok := FindStable(TextTimLogin, 3, 2000) 
 
     if (!ok)
     {
         Log("Login button not found.")
-        Gosub CleanupMuMu
         return
     }
 
@@ -544,7 +634,7 @@ OperateMuMuAndTim()
         Sleep 2000
     }
 
-    Sleep 20000
+    Sleep 40000
 
     WinSet AlwaysOnTop, Off, ahk_exe MuMuPlayer.exe
     Log("TIM flow completed.")
@@ -555,8 +645,8 @@ OperateMuMuAndTim()
 CleanupMuMu:
     Log("Force closing MuMu emulator process...")
     Process, Close, MuMuPlayer.exe
-    Process, WaitClose, MuMuPlayer.exe, 5
-    Sleep 3000
+    Process, WaitClose, MuMuPlayer.exe, 45
+    Sleep 5000
     Log("MuMu closed successfully.")
 return
 }
