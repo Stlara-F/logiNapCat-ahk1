@@ -22,7 +22,7 @@ Auto login for Napcat docker
    urlLog := "http://<container-ip>:port/#!/3/docker/containers/<container-id>/logs"   ;url for log
    urlRestart := "http://<container-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
    ```
-3. Run main.ahk; press F8 to start, F12 to stop.
+3. Run main.ahk; press F12 to stop.
 # Thanks
 - FeiYue  / Descolada  / c4p  / ed1chandler
 - Findtext
