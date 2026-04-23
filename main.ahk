@@ -167,6 +167,8 @@ MainStart:
     if (!OpenChromeLogin(urlLogin))
     {
         Log("Chrome init failed.")
+        Process, Close, chrome.exe
+        Sleep 1000
         Sleep 5000
         Gosub MainStart
     }
