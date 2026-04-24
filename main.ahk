@@ -324,7 +324,7 @@ OpenChromeLogin(Url)
 
     Run %ChromePath% -incognito "%Url%", , , ChromePID
     Log("Chrome launched. PID=" . ChromePID)
-    WinWait ahk_pid %ChromePID%, , 15
+    WinWait ahk_pid %ChromePID%, , 5
     if ErrorLevel
     {
         Log("Chrome window wait timeout.")
@@ -437,7 +437,7 @@ MoveWindowToQRAnchor()
 {
     global TextQR
 
-    WinWait Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 30
+    WinWait Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 25
     if ErrorLevel
     {
         Log("QR anchor window not found.")
@@ -445,7 +445,7 @@ MoveWindowToQRAnchor()
     }
 
     WinActivate Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe
-    WinWaitActive Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 15
+    WinWaitActive Real-time screenshot ahk_class Qt5156QWindow ahk_exe MuMuPlayer.exe, , 25
     Sleep 1000
 
     okQR := FindStable(TextQR, 2)
@@ -481,7 +481,7 @@ MoveWindowToQRAnchor()
     Sleep 100
     
     Click up left
-    Sleep 2000
+    Sleep 1000
 
     return true
 }
@@ -493,7 +493,7 @@ OperateMuMuAndTim()
     Log("Launching MuMu emulator.")
     Run %MuMuPath%
 
-    WinWait ahk_exe MuMuPlayer.exe, , 90
+    WinWait ahk_exe MuMuPlayer.exe, , 120
     if ErrorLevel
     {
         Log("MuMu window not found.")
@@ -502,10 +502,10 @@ OperateMuMuAndTim()
 
     WinActivate ahk_exe MuMuPlayer.exe
     WinSet AlwaysOnTop, On, ahk_exe MuMuPlayer.exe
-    WinWaitActive ahk_exe MuMuPlayer.exe, , 60
+    WinWaitActive ahk_exe MuMuPlayer.exe, , 90
     Log("MuMu window active.")
 
-    Sleep 40000
+    Sleep 45000
 
     steps := [ {feat: TextTimIcon, label: "TIM icon"}
               , {feat: TextTimPlus, label: "Plus button"}
@@ -636,7 +636,7 @@ OperateMuMuAndTim()
         Sleep 2000
     }
 
-    Sleep 40000
+    Sleep 75000
 
     WinSet AlwaysOnTop, Off, ahk_exe MuMuPlayer.exe
     Log("TIM flow completed.")
