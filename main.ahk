@@ -619,7 +619,7 @@ OperateMuMuAndTim()
     Sleep 1000
 
     Log("Waiting for QR scan complete, searching login button...")
-    ok := FindStable(TextTimLogin, 3, 2000) 
+    ok := FindStable(TextTimLogin, 5, 5000) 
 
     if (!ok)
     {
