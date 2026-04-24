@@ -571,7 +571,7 @@ OperateMuMuAndTim()
         }
         else if (label = "Plus button")
         {
-            stillExists := !FindStable(TextTimScan, 1)
+            stillExists := !FindStable(TextTimScan, 3)
         }
         else if (label = "Camera button")
         {
@@ -580,7 +580,7 @@ OperateMuMuAndTim()
         }
         else
         {
-            stillExists := FindStable(feat, 1)
+            stillExists := FindStable(feat, 3)
         }
 
         if (stillExists)
