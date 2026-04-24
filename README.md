@@ -4,14 +4,14 @@ Auto login for Napcat docker
 - Monitor Offline Logs.
 - Restart the container to retrieve the QR code.
 - Using the Android Emulator's Screen Camera to Scan the code.
-### ENV：
+### ENV
 - Windows10 (Display 1920x1080)
 - Chrome (Dark theme)
 - MuMuPlayer 3.1.7.0 Display Mobilemode 540x260(DPI240)
 - TIM 3.5.8
 - AHK v1
 - Portainer
-### Guide：
+### Guide
 1. Download the ZIP file and extract it to the root directory of the AHK v1 program.
 2. Modify the global variable configuration in `main.ahk` as follows:
    ```
