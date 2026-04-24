@@ -23,6 +23,8 @@ Auto login for Napcat docker
    urlRestart := "http://<container-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
    ```
 3. Run main.ahk; press F12 to stop.
+4. (Optional) Use a virtual screen to resolve issues related to the absence of a physical screen or remote desktop access.
+   https://github.com/KtzeAbyss/Easy-Virtual-Display | VirtualDisplayProject.exe
 # Thanks
 - FeiYue  / Descolada  / c4p  / ed1chandler
 - Findtext
