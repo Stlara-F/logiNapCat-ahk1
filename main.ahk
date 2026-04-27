@@ -60,11 +60,11 @@ DXGI_Capture(bits, x, y, w, h) {
 ; ===================== Config =====================
 ChromePath := "" ;(optional)Chrome path
 MuMuPath := "C:\Program Files\Netease\MuMuPlayerGlobal-12.0\shell\MuMuPlayer.exe"   ;MuMu path
-Account := "username"   ;container username
-Password := "password"  ;container password
-urlLogin := "http://<container-ip>:port/" ;url for login
-urlLog := "http://<container-ip>:port/#!/3/docker/containers/<container-id>/logs"   ;url for log
-urlRestart := "http://<container-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
+Account := "username"   ;portainer username
+Password := "password"  ;portainer password
+urlLogin := "http://<portainer-ip>:port/" ;url for login
+urlLog := "http://<portainer-ip>:port/#!/3/docker/containers/<container-id>/logs"   ;url for log
+urlRestart := "http://<portainer-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
 
 CHECK_DISCONNECT_INTERVAL := 10000
 CHECK_QR_INTERVAL := 30000
