@@ -16,11 +16,11 @@ Auto login for Napcat docker
 2. Modify the global variable configuration in `main.ahk` as follows:
    ```
    MuMuPath := "C:\Program Files\Netease\MuMuPlayerGlobal-12.0\shell\MuMuPlayer.exe"   ;MuMu path
-   Account := "username"   ;container username
-   Password := "password"  ;container password
-   urlLogin := "http://<container-ip>:port/" ;url for login
-   urlLog := "http://<container-ip>:port/#!/3/docker/containers/<container-id>/logs"   ;url for log
-   urlRestart := "http://<container-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
+   Account := "username"   ;portainer username
+   Password := "password"  ;portainer password
+   urlLogin := "http://<portainer-ip>:port/" ;url for login
+   urlLog := "http://<portainer-ip>:port/#!/3/docker/containers/<container-id>/logs"   ;url for log
+   urlRestart := "http://<portainer-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
    ```
 3. Run main.ahk; press F12 to stop.
 4. (Optional) Use a virtual screen to resolve issues related to the absence of a physical screen or remote desktop access.
