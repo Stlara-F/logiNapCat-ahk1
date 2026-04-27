@@ -513,7 +513,7 @@ OperateMuMuAndTim()
               , {feat: TextTimCam, label: "Camera button"} ]
     
     currentStep := 1
-    maxRetries := 3
+    maxRetries := 5
     retryCount := 0
 
     Loop
@@ -565,13 +565,13 @@ OperateMuMuAndTim()
 
         if (label = "Scan button")
         {
-            Log("Waiting 3s for camera to load...")
-            Sleep 3000
+            Log("Waiting 5s for camera to load...")
+            Sleep 5000
             stillExists := false
         }
         else if (label = "Plus button")
         {
-            stillExists := !FindStable(TextTimScan, 3)
+            stillExists := !FindStable(TextTimScan, 5)
         }
         else if (label = "Camera button")
         {
@@ -580,7 +580,7 @@ OperateMuMuAndTim()
         }
         else
         {
-            stillExists := FindStable(feat, 3)
+            stillExists := FindStable(feat, 55)
         }
 
         if (stillExists)
@@ -645,7 +645,7 @@ OperateMuMuAndTim()
         return
     }
 
-    Loop, 3
+    Loop, 5
     {
         fresh := FindStable(TextTimLogin, 1)
         if (!fresh)
