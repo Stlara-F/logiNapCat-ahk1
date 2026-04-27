@@ -58,7 +58,7 @@ DXGI_Capture(bits, x, y, w, h) {
 }
 
 ; ===================== Config =====================
-ChromePath := "" ;Chrome path
+ChromePath := "" ;(optional)Chrome path
 MuMuPath := "C:\Program Files\Netease\MuMuPlayerGlobal-12.0\shell\MuMuPlayer.exe"   ;MuMu path
 Account := "username"   ;container username
 Password := "password"  ;container password
@@ -619,19 +619,43 @@ OperateMuMuAndTim()
     Sleep 1000
 
     Log("Waiting for QR scan complete, searching login button...")
-    ok := FindStable(TextTimLogin, 5, 5000) 
+    loginTimeout := 30
+    startTime := A_TickCount
+    ok := ""
+    while (A_TickCount - startTime < loginTimeout * 1000)
+    {
+        attempt := FindStable(TextTimLogin, 1)
+        if (attempt)
+        {
+            Sleep 1000
+            ok := FindStable(TextTimLogin, 2, 2000)
+            if (ok)
+            {
+                Log("Login button appeared at " . ok[1].x . "," . ok[1].y)
+                break
+            }
+        }
+        Sleep 2000
+    }
 
     if (!ok)
     {
-        Log("Login button not found.")
+        Log("Login button not found within " . loginTimeout . " seconds.")
+        Gosub CleanupMuMu
         return
     }
 
     Loop, 3
     {
-        x := ok[1].x
-        y := ok[1].y
-        Log("Clicking login button (Attempt " A_Index ") | Pos: " x "," y)
+        fresh := FindStable(TextTimLogin, 1)
+        if (!fresh)
+        {
+            Log("Login button disappeared, assuming login success.")
+            break
+        }
+        x := fresh[1].x
+        y := fresh[1].y
+        Log("Clicking login button (Attempt " . A_Index . ") | Pos: " . x . "," . y)
         Click %x%, %y%
         Sleep 2000
     }
