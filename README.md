@@ -25,6 +25,8 @@ Auto login for Napcat docker
 3. Run main.ahk; press F12 to stop.
 4. (Optional) Use a virtual screen to resolve issues related to the absence of a physical screen or remote desktop access.
    https://github.com/KtzeAbyss/Easy-Virtual-Display | VirtualDisplayProject.exe
+### ps
+- If the program cannot recognize the feature values ​​correctly, please manually modify the corresponding parameters through FindText in the Lib folder.
 # Thanks
 - FeiYue  / Descolada  / c4p  / ed1chandler
 - Findtext
