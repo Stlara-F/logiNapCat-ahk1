@@ -22,9 +22,10 @@ Auto login for Napcat docker
    urlLog := "http://<portainer-ip>:port/#!/3/docker/containers/<container-id>/logs"   ;url for log
    urlRestart := "http://<portainer-ip>:port/#!/3/docker/containers/<container-id>"    ;url for restart
    ```
-3. Run main.ahk; press F12 to stop.
+3. Run QRlogin.ahk; press F12 to stop.
 4. (Optional) Use a virtual screen to resolve issues related to the absence of a physical screen or remote desktop access.
    https://github.com/KtzeAbyss/Easy-Virtual-Display | VirtualDisplayProject.exe
+5. Currently, there is no effective method to bypass the QR code security verification mechanism implemented in the `Pwdlogin.ahk` script for TIM version 3.5.8. If you indeed require password-based login functionality, please switch your client to the latest version of QQ running within the MuMu emulator, and update the text feature values ​​in `Pwdlogin.ahk` accordingly; however, please be aware that adopting this approach will result in significant system resource overhead.
 ### ps
 - If the program cannot recognize the feature values ​​correctly, please manually modify the corresponding parameters through FindText in the Lib folder.
 # Thanks
