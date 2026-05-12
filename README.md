@@ -28,6 +28,18 @@ Auto login for Napcat docker
 5. Currently, there is no effective method to bypass the QR code security verification mechanism implemented in the `Pwdlogin.ahk` script for TIM version 3.5.8. If you indeed require password-based login functionality, please switch your client to the latest version of QQ running within the MuMu emulator, and update the text feature values ​​in `Pwdlogin.ahk` accordingly; however, please be aware that adopting this approach will result in significant system resource overhead.
 ### ps
 - If the program cannot recognize the feature values ​​correctly, please manually modify the corresponding parameters through FindText in the Lib folder.
+```
+TextUser := "|<>*" ;click portainer username
+TextLogin := "|<>*" ;login button
+TextDisconnect := "|<>*" ;offline log
+TextRestartBtn := "|<>*" ;portainer restart napcat docker
+TextTimIcon := "|<>*"
+TextTimPlus := "|<>*" ; '+'
+TextTimScan := "|<>*" ;扫一扫
+TextTimCam :="|<>*" ;screem cam
+TextTimLogin :="|<>*" ;login button
+TextQR := "|<>*" ;QR top left square
+```
 # Thanks
 - FeiYue  / Descolada  / c4p  / ed1chandler
 - Findtext
